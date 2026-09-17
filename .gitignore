@@ -5,10 +5,11 @@ __pycache__/
 .pytest_cache/
 *.egg-info/
 
-# C++ build artifacts (rebuilt by py/fdtd.py automatically)
+# C++ build artifacts (rebuilt by py/fdtd.py / py/twoport.py automatically)
 *.exe
 *.o
 telegrapher_fdtd
+twoport_fdtd
 
 # scratch simulation output
 _tmp_*.csv
