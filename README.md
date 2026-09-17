@@ -5,25 +5,42 @@ from the telegrapher's equations, to watch a signal physically propagate
 down an interconnect and measure its reflection behavior from the simulated
 fields.
 
-Stage A (current): a 1D lossless line, a matched source, a resistive load,
-and a reflection coefficient measured from the simulated waveform and
-checked against the analytic formula.
+- **Stage A**: a 1D lossless line, a matched source, a resistive load, and a
+  reflection coefficient measured from the simulated waveform and checked
+  against the analytic formula.
+- **Stage B** (current): an impedance-step discontinuity turned into a
+  virtual network analyzer: S11(f)/S21(f) extracted from the simulated
+  fields via time-domain gating, checked against the analytic two-port
+  (ABCD-matrix) result.
 
 ## What's here
 
-- `src/telegrapher_fdtd.cpp`: the time-stepping core (C++17). A Yee-staggered
-  leapfrog solver for the 1D telegrapher's equations, with a matched
-  (Thevenin) source and a resistive load boundary.
-- `py/fdtd.py`: builds the core, runs it, loads its CSV output, and measures
-  the reflection coefficient from the waveform.
-- `py/run_telegrapher.py`: one command that regenerates every figure and the
-  reflection-coefficient table.
+- `src/telegrapher_fdtd.cpp`: Stage A's time-stepping core (C++17). A
+  Yee-staggered leapfrog solver for the 1D telegrapher's equations, with a
+  matched (Thevenin) source and a resistive load boundary.
+- `py/fdtd.py`: builds Stage A's core, runs it, loads its CSV output, and
+  measures the reflection coefficient from the waveform.
+- `py/run_telegrapher.py`: one command that regenerates every Stage A
+  figure and the reflection-coefficient table.
 - `tests/test_reflection.py`: checks measured vs. analytic reflection
   coefficient for 5 terminations, plus a discrete-causality test.
+- `src/twoport_fdtd.cpp`: Stage B's core. The same scheme as Stage A,
+  generalized to position-dependent L(x)/C(x) so a slab of a different
+  impedance can sit in the middle of the line.
+- `py/twoport.py`: builds Stage B's core, runs it, separates
+  incident/reflected/transmitted waves by time-domain gating, and computes
+  S11(f)/S21(f) (with an analytic ABCD-matrix cross-check).
+- `py/run_sparams.py`: one command that regenerates Stage B's S-parameter
+  and time-domain figures.
+- `tests/test_sparams.py`: checks measured vs. analytic S11/S21 for 3
+  (impedance, slab length) combinations, plus a regression test for a
+  windowing bug this stage hit.
 - `docs/00-spec.md`: what this project is and isn't, and the ML/optimization
   scope line (same as [serdes-link](https://github.com/jackpham-rgb/serdes-link)).
 - `docs/01-telegrapher.md`: Stage A writeup, including the three real bugs
   hit while building this and how each was found.
+- `docs/02-sparameters.md`: Stage B writeup, including the multi-bounce
+  amplitude mistake and the windowing bug, and how each was found.
 
 ## Requirements
 
@@ -37,7 +54,8 @@ python -m venv .venv
 .venv\Scripts\activate   # or: source .venv/bin/activate on Linux/Mac
 pip install numpy scipy matplotlib pytest
 
-python py/run_telegrapher.py   # builds the core, runs all cases, writes docs/imgs/*.png
+python py/run_telegrapher.py   # Stage A: builds the core, runs all cases, writes docs/imgs/*.png
+python py/run_sparams.py       # Stage B: builds the core, runs the VNA sweep, writes docs/imgs/*.png
 pytest tests/ -v
 ```
 
