@@ -1,4 +1,4 @@
-"""Stage C driver: add series resistance R and shunt conductance G to the
+"""Loss & dispersion driver: add series resistance R and shunt conductance G to the
 line, and show insertion loss actually rolling off with frequency instead
 of staying flat forever, checked against the analytic lossy propagation
 constant.
