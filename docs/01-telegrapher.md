@@ -1,4 +1,4 @@
-# Stage A: 1D Telegrapher's Equation FDTD
+# Reflection: 1D Telegrapher's Equation FDTD
 
 ## Goal
 
