@@ -1,4 +1,4 @@
-"""Stage B driver: turn the FDTD line into a virtual network analyzer.
+"""S-parameters driver: turn the FDTD line into a virtual network analyzer.
 
 Runs a reference (uniform) simulation and a discontinuity simulation, uses
 their difference to separate incident/reflected/transmitted waves at the
