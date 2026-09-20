@@ -1,4 +1,4 @@
-# Stage B: S-Parameters From Fields (a virtual network analyzer)
+# S-Parameters From Fields (a virtual network analyzer)
 
 ## Goal
 
@@ -20,8 +20,9 @@ is purely from the impedance step, not a change in wave speed.
 
 - **Port 1 reference plane**: `obs1`, in the Z1 region before the slab.
 - **Port 2 reference plane**: `obs2`, in the Z1 region after the slab.
-- **Core**: `src/twoport_fdtd.cpp`, the same Yee leapfrog scheme as Stage
-  A's core, generalized to position-dependent L(x)/C(x) arrays.
+- **Core**: `src/twoport_fdtd.cpp`, the same Yee leapfrog scheme as the
+  reflection solver's core, generalized to position-dependent L(x)/C(x)
+  arrays.
 
 ## Time-domain gating (how a real VNA separates incident/reflected/transmitted)
 
