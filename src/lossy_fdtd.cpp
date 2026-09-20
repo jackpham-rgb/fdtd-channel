@@ -11,7 +11,7 @@
 // same idea as a lossy Yee update's Ca/Cb coefficients). This keeps the
 // scheme stable under the SAME Courant condition as the lossless case; a
 // naive fully-explicit loss term would add its own (tighter) stability
-// limit instead, the same kind of problem Stage A hit with the resistive
+// limit instead, the same kind of problem the reflection solver hit with the resistive
 // load boundary.
 //
 // Both ends are matched to Z0 = sqrt(L/C), the LOSSLESS characteristic
@@ -19,7 +19,7 @@
 // here by choice, see docs/03-loss.md) the real lossy impedance is close
 // enough to Z0 that this is a good approximation, not an exact match; any
 // small residual reflection this leaves shows up as a small, honestly-
-// reported floor in the measurement, same as Stage A/B's boundaries.
+// reported floor in the measurement, same as the other two solvers' boundaries.
 //
 // This solver ALWAYS uses a matched load (never open/short/other ZL): the
 // point here is to measure how a signal decays and spreads while
