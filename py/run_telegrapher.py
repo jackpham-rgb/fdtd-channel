@@ -1,4 +1,4 @@
-"""One-command Stage A driver: builds the C++ core, runs the reflection
+"""One-command reflection driver: builds the C++ core, runs the reflection
 cases (matched/open/short/arbitrary), measures Gamma against the analytic
 formula, and produces the hero figure: snapshots of the pulse traveling
 down the line and reflecting off an impedance step.
