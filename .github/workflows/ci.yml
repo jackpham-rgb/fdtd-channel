@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.14"
+      - name: Install and show the C++ compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++
+          g++ --version
+      - name: Install Python packages
+        run: python -m pip install -r requirements.txt
+      - name: Run the tests
+        run: python -m pytest tests/ -v
+      - name: Run the README scripts
+        run: |
+          python py/run_telegrapher.py
+          python py/run_sparams.py
+          python py/run_loss.py
+      - name: No em dashes in tracked text files
+        run: |
+          python - <<'EOF'
+          import subprocess, sys
+          bad = []
+          files = subprocess.run(["git", "ls-files"], capture_output=True, text=True, check=True).stdout.splitlines()
+          for path in files:
+              try:
+                  text = open(path, encoding="utf-8").read()
+              except (UnicodeDecodeError, OSError):
+                  continue
+              for n, line in enumerate(text.splitlines(), 1):
+                  if "\u2014" in line:
+                      bad.append(f"{path}:{n}")
+          print("\n".join(bad) if bad else "no em dashes found")
+          sys.exit(1 if bad else 0)
+          EOF

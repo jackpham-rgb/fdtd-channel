@@ -77,7 +77,7 @@ Python 3.13 or 3.14 (both tested), and g++ with C++17 on the path.
 
 ```bash
 python -m venv .venv && source .venv/bin/activate   # .venv\Scripts\activate on Windows
-pip install numpy scipy matplotlib pytest
+pip install -r requirements.txt
 python py/run_telegrapher.py   # reflection figures and table
 python py/run_sparams.py       # S-parameter figures
 python py/run_loss.py          # loss figures

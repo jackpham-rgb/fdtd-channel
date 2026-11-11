@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "fdtd-channel: a 1D FDTD transmission-line solver"
+abstract: >-
+  A from-scratch finite-difference time-domain (FDTD) solver for the
+  telegrapher's equations. C++17 time-stepping cores and Python analysis
+  extract the reflection coefficient, S-parameters, and frequency-dependent
+  loss of a transmission line, each checked against the analytic answer.
+authors:
+  - family-names: "Pham"
+    given-names: "Jack"
+version: "0.3.0"
+date-released: "2026-11-11"
+license: MIT
+repository-code: "https://github.com/jackpham-rgb/fdtd-channel"
+keywords:
+  - FDTD
+  - transmission line
+  - telegrapher's equations
+  - S-parameters
+  - signal integrity
