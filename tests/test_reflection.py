@@ -52,14 +52,13 @@ def test_discrete_causality_signal_cannot_arrive_early(binary, tmp_path):
     test was: a near-source point genuinely does see the source's own
     small pre-peak tail (a few mV, not a bug), and that's not what
     causality actually forbids. What causality DOES guarantee is checked
-    here instead: an exact zero before the light-cone step, not an
-    approximately-small value before some arbitrary time."""
+    here instead: an exact zero before the signal can have moved one cell
+    per step from the source to the probe, not an approximately-small value
+    before some arbitrary time."""
     out_csv = tmp_path / "obs.csv"
     obs_frac = 0.9  # far from the source
-    v = 1.0 / np.sqrt(L * C)
-    dt = 0.9 * DX / v  # matches the core's own Courant dt for ZL<0/open (see src)
     obs_cell = int(obs_frac * N)
-    arrival_step = int(obs_cell * DX / v / dt)
+    arrival_step = obs_cell  # leapfrog moves at most one cell per step
 
     times, v_obs = fdtd.run(N, DX, arrival_step - 5, L, C, -1, T0, SIGMA, obs_frac,
                              out_csv, binary=binary)
