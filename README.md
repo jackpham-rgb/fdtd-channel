@@ -23,7 +23,9 @@ The time-stepping core is C++17. Python builds it, runs it, and does the analysi
 
 The core stores voltage at grid points and current halfway between them, and updates them in turn. That staggered layout is called a Yee grid. It is what keeps the scheme accurate with a simple update.
 
-It answers three questions, each with its own solver:
+It answers three questions, each with its own solver. Here is each setup, drawn to scale with the values the scripts use:
+
+![The three simulation setups: reflection, S-parameters and loss](docs/imgs/setups.png)
 
 1. **Reflection.** When a wave hits the end of a line, part of it comes back. The fraction that comes back is called the reflection coefficient. I measure it from the simulated waveform and compare it to the formula Γ = (ZL − Z0) / (ZL + Z0).
 2. **S-parameters.** A lab instrument called a network analyzer sends a signal into a part and records how much comes back and how much gets through, at every frequency. Those two curves are called S11 and S21, or S-parameters. I put a short section of different impedance in the middle of the line and pull S11 and S21 out of the fields, which turns the simulation into a virtual network analyzer.
@@ -90,7 +92,7 @@ Each script compiles its C++ core automatically.
 
 ```
 src/     C++ time-stepping cores, one per solver
-py/      builds and runs the cores, analysis and plots
+py/      builds and runs the cores, analysis and plots (make_setup_diagram.py draws the setups)
 tests/   pytest checks against the analytic formulas
 docs/    write-ups and figures
 ```
