@@ -8,10 +8,9 @@
 // terminated in a resistive load ZL (ZL < 0 means open circuit, ZL == 0
 // means short).
 //
-// This is the compiled core; py/run_fdtd.py builds it, runs it, and does
-// all the analysis and plotting. Keeping the physics here and the science
-// in Python matches this project's own stated split (see the master
-// planning reference).
+// This is the compiled core; py/fdtd.py builds and runs it, and
+// py/run_telegrapher.py makes the figures. Keeping the physics here and the
+// analysis in Python is the split described in docs/00-spec.md.
 //
 // Usage:
 //   telegrapher_fdtd N dx n_steps L C ZL t0 sigma obs_frac out.csv [snap.csv] [n_snapshots]

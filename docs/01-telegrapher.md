@@ -54,7 +54,7 @@ Measured vs. analytic Gamma across five terminations (from
 | ZL = 25 ohm | 25 | -0.3330 | -0.3333 | 0.0003 |
 | ZL = 100 ohm | 100 | 0.3336 | 0.3333 | 0.0003 |
 
-Four of five cases match to within 0.03%. The matched case has the largest
+Four of five cases match to within 0.0003 (absolute). The matched case has the largest
 error (0.0114), which makes sense: it's the one case where the "true"
 answer is exactly zero, so any residual grid/measurement noise shows up as
 100% of the (tiny) signal rather than a small fraction of a large one.

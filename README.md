@@ -14,7 +14,7 @@ A trace that carries fast signals behaves less like a wire and more like a pipe 
 |---|---|---|
 | Reflection off a load | matches the analytic formula | within 0.0003 for 4 of 5 loads |
 | Reflection and transmission vs frequency | matches the analytic two-port | worst error 0.0012 (reflection), 0.0016 (transmission) |
-| Loss vs frequency | matches the analytic loss | within about 5 to 7% from 110 MHz to 1 GHz |
+| Loss vs frequency | matches the analytic loss | within 7% (1.1 dB/m) from 110 MHz to 1 GHz |
 | Tests | all pass | `pytest tests/` |
 
 ## How it works
@@ -73,7 +73,7 @@ Full write-ups: [reflection](docs/01-telegrapher.md), [S-parameters](docs/02-spa
 
 ## Reproduce it
 
-Python 3.10 or newer, and g++ with C++17 on the path.
+Python 3.13 or 3.14 (both tested), and g++ with C++17 on the path.
 
 ```bash
 python -m venv .venv && source .venv/bin/activate   # .venv\Scripts\activate on Windows

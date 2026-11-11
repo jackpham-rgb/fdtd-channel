@@ -59,7 +59,7 @@ def test_attenuation_matches_analytic(binary, tmp_path, R, G):
     assert rel_err < 0.15, f"R={R}, G={G}: max relative attenuation error {rel_err:.3f}"
 
 
-def test_lossless_limit_matches_stage_a(binary, tmp_path):
+def test_lossless_limit_matches_reflection_solver(binary, tmp_path):
     """R=G=0 should reduce to a plain lossless matched line: no measurable
     attenuation between the two observation points."""
     _, v_near, v_far, dt = lossy.run(N, DX, N_STEPS, L, C, 0.0, 0.0, T0, SIGMA,
