@@ -2,30 +2,12 @@
 
 ## What this is
 
-An FDTD (Finite-Difference Time-Domain) electromagnetic/transmission-line
-solver, built from Maxwell's/the telegrapher's equations, to watch a signal
-physically propagate down an interconnect and extract quantities engineers
-actually measure (reflection coefficient, S-parameters, insertion loss)
-from the simulated fields. See the README for the three capabilities this
-covers.
+A field solver for a transmission line, built from the telegrapher's equations with the finite-difference time-domain (FDTD) method. It lets a signal propagate down an interconnect and extracts the quantities engineers measure in the lab: reflection coefficient, S-parameters and insertion loss. See the README for the three solvers.
 
-## Core language
+## Language split
 
-C++17 for the time-stepping cores (`src/*.cpp`), matching this project's
-own stated skill mapping (the same numerical-methods muscle as `gw_sim`).
-Python (`py/`) builds each core, runs it, and does all analysis and
-plotting; no physics or time-stepping happens in Python.
+C++17 for the time-stepping cores (`src/*.cpp`). Python (`py/`) builds each core, runs it, and does all analysis and plotting. No time-stepping happens in Python.
 
-## Honesty line
+## Scope
 
-An educational, from-first-principles FDTD field solver. Not a replacement
-for commercial EM tools (HFSS/ADS). The value is that channel behavior is
-derived from Maxwell's/the telegrapher's equations and correlated against
-analytic theory.
-
-## The ML / optimization decision
-
-Same boundary as `serdes-link`: ML that designs or judges a circuit's
-layout is out of scope here. Applied optimization on measurement/simulation
-data is not, if a genuine use for it shows up (for example, fitting a
-grid-convergence trend in a future extension).
+A from-first-principles solver for learning and validation, not a replacement for commercial EM tools such as HFSS or ADS. Every result is compared against the analytic answer rather than tuned to match it.
